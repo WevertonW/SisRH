@@ -33,8 +33,26 @@ class FuncionarioController extends Controller
 
     public function create()
     {
+        // Envia lista de departamentos para a view cadastro
         $departamentos = Departamento::all()->sortBy('nome');
         $cargos = Cargo::all()->sortBy('descricao');
         return view('funcionarios.create', compact('departamentos', 'cargos'));
+    }
+
+    public function store(Request $request)
+    {
+        $input = $request->toArray();
+        if(!empty($input['foto']) && $input['foto']->isValid())
+        {
+            $nomeArquivo= $input['foto']->hashName(); // obtem a hash do nome do arquivo
+            $input['foto']->store('public/funcionarios'); // upload da foto em uma pasta
+            $input['foto'] = $nomeArquivo; // Guardar o nome do arquivo 
+        }else{
+            $input['foto'] = null;
+        }
+
+        Funcionario::create($input);
+
+        return redirect()->route('funcionarios.index')->with('sucesso', 'Funcionário Cadastrado com sucesso');
     }
 }
