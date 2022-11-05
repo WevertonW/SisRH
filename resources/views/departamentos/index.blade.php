@@ -4,7 +4,7 @@
 
 @section('conteudo')
     <h1 class="mb-4">Departamentos</h1>
-    <a href="{{route('cargos.create')}}" class="btn btn-primary position-absolute top-0 end-0 m-4 rounded-circle"><i class="bi bi-plus fs-4"></i></a>
+    <a href="{{route('departamentos.create')}}" class="btn btn-primary position-absolute top-0 end-0 m-4 rounded-circle"><i class="bi bi-plus fs-4"></i></a>
    
     <p>Total de Departamentos: {{$totalDepartamento}}</p>
 

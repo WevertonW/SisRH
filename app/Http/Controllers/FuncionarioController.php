@@ -14,7 +14,6 @@ class FuncionarioController extends Controller
        
        
         $funcionarios = Funcionario::where('nome','like','%'.$request->buscaFuncionario.'%')->orderBy('nome','asc')->get();
-
         $totalFuncionarios = Funcionario::all()->count();
         return view('funcionarios.index', compact('funcionarios', 'totalFuncionarios'));
     }
@@ -27,13 +26,12 @@ class FuncionarioController extends Controller
         $request->buscaFuncionario.'%')->orderBy('nome','asc')->get();
 
         $totalFuncionarios = Funcionario::where('id_departamento', $id)->count();
-
         return view('funcionarios.index', compact('funcionarios', 'totalFuncionarios','departamento'));
     }
 
     public function create()
     {
-        // Envia lista de departamentos para a view cadastro
+        // Envia lista de departamentos e cargos para a view cadastro
         $departamentos = Departamento::all()->sortBy('nome');
         $cargos = Cargo::all()->sortBy('descricao');
         return view('funcionarios.create', compact('departamentos', 'cargos'));
@@ -42,7 +40,7 @@ class FuncionarioController extends Controller
     public function store(Request $request)
     {
         $input = $request->toArray();
-        if(!empty($input['foto']) && $input['foto']->isValid())
+        if(!empty($input['foto']&& $input['foto']->isValid()))
         {
             $nomeArquivo= $input['foto']->hashName(); // obtem a hash do nome do arquivo
             $input['foto']->store('public/funcionarios'); // upload da foto em uma pasta

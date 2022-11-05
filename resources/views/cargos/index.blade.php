@@ -8,7 +8,7 @@
 
 <p>Total de Cargos: {{$totalCargo}}</p>
 
-<form action="" method="get" class="mb-3 d-flex justify-content-end">
+<form action="#" method="get" class="mb-3 d-flex justify-content-end">
     <div class="input-group me-3">
         <input type="text" name="buscaCargo" class="form-control form-control-lg" placeholder="Nome do Cargos">
         <button class="btn btn-primary btn-lg" type="submit">Procurar</button>
@@ -21,8 +21,8 @@
         <thead class="table-dark">
             <tr>
                 <th width="60">ID</th>
-                <th class="text-center">descricao</th>
-                <th width="200">acao</th>
+                <th class="text-center">Descrição</th>
+                <th width="200">Ação</th>
             </tr>
         </thead>
         <tbody>
